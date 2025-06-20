@@ -1,0 +1,37 @@
+<?php
+
+$rows = 5; // Total number of rows
+
+
+
+for ($i = 1; $i <= $rows; $i++) {
+
+
+
+// Print spaces before stars
+
+for ($j = 1; $j <= $rows - $i; $j++) {
+
+echo " "; // Single space
+
+}
+
+
+
+// Print stars with a space after each
+
+for ($k = 1; $k <= $i; $k++) {
+
+echo "* ";
+
+}
+
+
+
+// Move to the next line
+
+echo "<br>";
+
+} 
+
+?>

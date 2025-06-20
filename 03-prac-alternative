@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    header, nav, section, article, aside, footer {
+      padding: 15px;
+      margin: 10px;
+      border-radius: 5px;
+    }
+
+    header {
+      background: #0073e6;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    header figure {
+      margin: 0;
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    header figcaption {
+      color: #f1f1f1;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    nav {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav:hover {
+      background: grey;
+      transition: 0.3s;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      text-decoration: overline;
+      color: black;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    section, article, aside {
+      background: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    section {
+      width: 65%;
+      font-size: 30px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    aside {
+      width: 30%;
+      background: #ffcc00;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* Removed scale/zoom effect */
+    #article2:hover {
+      background-color: grey;
+      color: whitesmoke;
+      box-shadow: 0 0 2px 0 black;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    aside:hover {
+      color: whitesmoke;
+    }
+
+    details summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <figure>
+      <img src="image.jpg" alt="Hitesh Profile Picture" />
+      <figcaption>Hitesh - Web Developer</figcaption>
+    </figure>
+    <h1>Hitesh</h1>
+    <p>Web Developer | IoT Enthusiast | Tech Blogger</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>Hello! I'm Hitesh, a passionate Web Developer with expertise in IoT, AI, and full-stack development.</p>
+    </section>
+
+    <article>
+      <h2>Work Experience</h2>
+      <p><strong>Software Engineer</strong> - XYZ Tech Solutions</p>
+      <p><time datetime="2022-06-01">June 2022 - Present</time></p>
+      <ul>
+        <li>Developed and maintained web applications.</li>
+        <li>Implemented IoT-based solutions for smart automation.</li>
+        <li>Worked with REST APIs and cloud platforms.</li>
+      </ul>
+    </article>
+
+    <article id="article2">
+      <h2>Education</h2>
+      <p><strong>Bachelor of Technology in Information Technology</strong></p>
+      <p>SVKM Institute of Technology</p>
+      <p><time datetime="2020-08-01">Aug 2023 - May 2027</time></p>
+    </article>
+
+    <aside>
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>Python, Java</li>
+        <li>IoT & Embedded Systems</li>
+        <li>Cloud Computing</li>
+        <li>AI & Machine Learning</li>
+      </ul>
+    </aside>
+
+    <details>
+      <summary>Click to View Certifications</summary>
+      <ul>
+        <li>Google Cloud Certified</li>
+        <li>Certified IoT Specialist</li>
+        <li>Full-Stack Development Bootcamp</li>
+      </ul>
+    </details>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Hitesh | Contact: hitesh@example.com</p>
+  </footer>
+
+</body>
+</html>
+<script>

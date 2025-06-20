@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gayatri Patil - Resume</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 40px;
+background-color: #f9f9f9;
+}
+.container {
+max-width: 800px;
+margin: auto;
+background: #fff;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.header {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+.header img {
+width: 120px;
+height: 120px;
+object-fit: cover;
+border-radius: 50%;
+border: 2px solid #333;
+}
+.header .info {
+font-size: 18px;
+}
+h1 {
+margin-bottom: 5px;
+}
+.section {
+margin-top: 30px;
+}
+.section h2 {
+color: #333;
+border-bottom: 1px solid #ccc;
+padding-bottom: 5px;
+}
+ul {
+padding-left: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<img src="atharv.jpg" alt="Gayatri Patil Photo">
+<div class="info">
+<h1>Atharav Chaudhari</h1>
+<p>Email: atharv@gmail.com</p>
+<p>Phone: +91 8698097856</p>
+<p>Location: Dhule, Maharashtra</p>
+<p>LinkedIn: <a href="https://www.linkedin.com/in/atharv/">Profile</a></p>
+</div>
+</div>
+<div class="section">
+<h2>Education</h2>
+<ul>
+<li>B.Tech IT, DBATU Lonere (2023 - 2027) - CGPA: 7.50 (FY)</li>
+</ul>
+</div>
+<div class="section">
+<h2>Skills</h2>
+<ul>
+<li>Proficient: Java, Python, HTML, CSS, JavaScript</li>
+<li>Familiar: C, C++, MERN Stack, DSA, Machine Learning</li>
+</ul>
+</div>
+<div class="section">
+<h2>Projects</h2>
+<ul>
+<li>Amazon Shopping Clone - HTML, CSS, JS</li>
+<li>GitHub Clone - React, Node.js, MongoDB</li>
+<li>Zerodha Clone - React, Node.js, MongoDB</li>
+</ul>
+</div>
+<div class="section">
+<h2>Achievements</h2>
+<ul>
+<li>Finalist in Technolons 2025 - Hackathon 25' (Top 20)</li>
+<li>Participated in Mumbai Hacks '24 (Guinness Record Event)</li>
+<li>Attended C++ Bootcamp at IIT Bombay</li>
+</ul>
+</div>
+<div class="section">
+<h2>Languages Known</h2>
+<ul>
+<li>English, Hindi, Marathi</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

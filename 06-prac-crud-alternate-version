@@ -1,0 +1,200 @@
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "student_db";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$highlighted_roll = null;
+$message = "";
+
+if (isset($_POST['submit'])) {
+    $roll_no = $_POST['roll_no'];
+    $name = $_POST['name'] ?? null;
+    $marks = $_POST['marks'] ?? null;
+    $action = $_POST['action'];
+    $highlighted_roll = $roll_no;
+
+    if ($action == "insert") {
+        $sql = "INSERT INTO students (roll_no, name, marks) VALUES ('$roll_no', '$name', '$marks')";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Student $roll_no added successfully.";
+        } else {
+            $message = "Insert error: " . mysqli_error($conn);
+            $highlighted_roll = null;
+        }
+    } elseif ($action == "update") {
+        $sql = "UPDATE students SET name='$name', marks='$marks' WHERE roll_no='$roll_no'";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Student $roll_no updated.";
+        } else {
+            $message = "Update error: " . mysqli_error($conn);
+            $highlighted_roll = null;
+        }
+    } elseif ($action == "delete") {
+        $sql = "DELETE FROM students WHERE roll_no='$roll_no'";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Student $roll_no deleted.";
+        } else {
+            $message = "Delete error: " . mysqli_error($conn);
+            $highlighted_roll = null;
+        }
+    }
+
+    echo "<p class='message'>$message</p>";
+}
+
+
+$sql = "SELECT * FROM students";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    echo "<div class='records'><h2>Student Records</h2><table>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        $highlight = ($row['roll_no'] == $highlighted_roll) ? "class='highlight'" : "";
+        echo "<tr $highlight>
+                <td>{$row['roll_no']}</td>
+                <td>{$row['name']}</td>
+                <td>{$row['marks']}</td>
+              </tr>";
+    }
+    echo "</table></div>";
+} else {
+    echo "<p>No records found.</p>";
+}
+
+mysqli_close($conn);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Manager</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .grid-forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .box {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin: 8px 0 4px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .records {
+            margin-top: 30px;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .highlight {
+            background-color: #d2f8d2 !important;
+        }
+        .message {
+            color: #1e88e5;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Manager</h1>
+
+    <div class="grid-forms">
+        <!-- Insert -->
+        <div class="box">
+            <h3>Add New Student</h3>
+            <form method="POST">
+                <input type="hidden" name="action" value="insert">
+                <label>Roll Number</label>
+                <input type="number" name="roll_no" required>
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+                <label>Marks</label>
+                <input type="number" name="marks" required>
+                <input type="submit" name="submit" value="Add Student">
+            </form>
+        </div>
+
+        <!-- Delete -->
+        <div class="box">
+            <h3>Remove Student</h3>
+            <form method="POST">
+                <input type="hidden" name="action" value="delete">
+                <label>Roll Number</label>
+                <input type="number" name="roll_no" required>
+                <input type="submit" name="submit" value="Delete">
+            </form>
+        </div>
+
+        <!-- Update -->
+        <div class="box">
+            <h3>Update Student Info</h3>
+            <form method="POST">
+                <input type="hidden" name="action" value="update">
+                <label>Roll Number</label>
+                <input type="number" name="roll_no" required>
+                <label>New Name</label>
+                <input type="text" name="name" required>
+                <label>New Marks</label>
+                <input type="number" name="marks" required>
+                <input type="submit" name="submit" value="Update">
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

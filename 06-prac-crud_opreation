@@ -1,0 +1,153 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "student_db";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$highlighted_roll = null;
+$message = "";
+
+if (isset($_POST['submit'])) {
+    $roll_no = $_POST['roll_no'];
+    $name = isset($_POST['name']) ? $_POST['name'] : null;
+    $marks = isset($_POST['marks']) ? $_POST['marks'] : null;
+    $action = $_POST['action'];
+    $highlighted_roll = $roll_no;
+
+    if ($action == "insert") {
+        $sql = "INSERT INTO students (roll_no, name, marks) VALUES ('$roll_no', '$name', '$marks')";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Student with Roll No $roll_no was <b>inserted</b>.";
+        } else {
+            $message = "Insert error: " . mysqli_error($conn);
+            $highlighted_roll = null;
+        }
+    } elseif ($action == "update") {
+        $sql = "UPDATE students SET name='$name', marks='$marks' WHERE roll_no='$roll_no'";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Student with Roll No $roll_no was <b>updated</b>.";
+        } else {
+            $message = "Update error: " . mysqli_error($conn);
+            $highlighted_roll = null;
+        }
+    } elseif ($action == "delete") {
+        $sql = "DELETE FROM students WHERE roll_no='$roll_no'";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Student with Roll No $roll_no was <b>deleted</b>.";
+        } else {
+            $message = "Delete error: " . mysqli_error($conn);
+            $highlighted_roll = null;
+        }
+    }
+}
+
+if (!empty($message)) {
+    echo "<p style='color:blue;'>$message</p>";
+}
+
+$sql = "SELECT * FROM students";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    echo "<h2>Student Records</h2>";
+    echo "<table border='1' cellpadding='5' cellspacing='0'>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        $highlight = ($row['roll_no'] == $highlighted_roll) ? " style='background-color: #e0ffe0;'" : "";
+        echo "<tr$highlight>
+                <td>{$row['roll_no']}</td>
+                <td>{$row['name']}</td>
+                <td>{$row['marks']}</td>
+              </tr>";
+    }
+    echo "</table>";
+} else {
+    echo "<p>No student records found.</p>";
+}
+
+mysqli_close($conn);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student CRUD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px; /* Space between boxes */
+            margin-bottom: 30px;
+        }
+        .form-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 6px;
+            margin: 6px 0;
+        }
+        input[type="submit"] {
+            padding: 6px 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Database Management</h1>
+
+    <div class="form-row">
+        <!-- Insert Form -->
+        <div class="form-box">
+            <h3>Insert Student</h3>
+            <form method="POST">
+                <input type="hidden" name="action" value="insert">
+                Roll No: <input type="number" name="roll_no" required><br>
+                Name: <input type="text" name="name" required><br>
+                Marks: <input type="number" name="marks" required><br>
+                <input type="submit" name="submit" value="Insert">
+            </form>
+        </div>
+
+        <!-- Delete Form -->
+        <div class="form-box">
+            <h3>Delete Student</h3>
+            <form method="POST">
+                <input type="hidden" name="action" value="delete">
+                Roll No: <input type="number" name="roll_no" required><br>
+                <input type="submit" name="submit" value="Delete">
+            </form>
+        </div>
+
+        <!-- Update Form -->
+        <div class="form-box">
+            <h3>Update Student</h3>
+            <form method="POST">
+                <input type="hidden" name="action" value="update">
+                Roll No: <input type="number" name="roll_no" required><br>
+                New Name: <input type="text" name="name" required><br>
+                New Marks: <input type="number" name="marks" required><br>
+                <input type="submit" name="submit" value="Update">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

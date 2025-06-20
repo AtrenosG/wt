@@ -1,0 +1,54 @@
+<?php
+
+// Function to check if a string is a palindrome
+
+function isPalindrome($str) {
+
+// Convert the string to lowercase for case-insensitive comparison
+
+$str = strtolower($str);
+
+
+
+// Reverse the string
+
+$reversed = strrev($str);
+
+
+
+// Compare original and reversed
+
+if ($str == $reversed) {
+
+return true;
+
+} else {
+
+return false;
+
+}
+
+}
+
+
+
+// Test string
+
+$input = "1221"; 
+
+
+
+
+// Call function and print result
+
+if (isPalindrome($input)) {
+
+echo "$input is a Palindrome.";
+
+} else {
+
+echo "$input is NOT a Palindrome.";
+
+}
+
+?> 

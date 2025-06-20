@@ -1,0 +1,76 @@
+<?php
+// Database credentials
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "atharva";
+
+// Establish database connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("<p style='color: red;'> Connection failed: " . mysqli_connect_error() . "</p>");
+}
+echo "<p style='color: green;'> Connection successful!</p>";
+
+
+$createTableSQL = "
+CREATE TABLE IF NOT EXISTS students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    marks INT NOT NULL,
+    subject VARCHAR(30) NOT NULL
+)";
+if (mysqli_query($conn, $createTableSQL)) {
+    echo "<p style='color: green;'> Table 'students' created or already exists.</p>";
+} else {
+    echo "<p style='color: red;'> Table creation failed: " . mysqli_error($conn) . "</p>";
+}
+
+
+$insertSQL1 = "INSERT INTO students (name, marks, subject) VALUES ('Atharva', 90, 'Physics')";
+if (mysqli_query($conn, $insertSQL1)) {
+    echo "<p style='color: green;'> Data for Atharva inserted successfully.</p>";
+} else {
+    echo "<p style='color: red;'> Error inserting data: " . mysqli_error($conn) . "</p>";
+}
+
+
+$insertSQL2 = "INSERT INTO students (name, marks, subject) VALUES ('Saksham', 80, 'Mathematics')";
+if (mysqli_query($conn, $insertSQL2)) {
+    echo "<p style='color: green;'> Data for Saksham inserted successfully.</p>";
+} else {
+    echo "<p style='color: red;'> Error inserting data: " . mysqli_error($conn) . "</p>";
+}
+
+
+$selectSQL = "SELECT * FROM students";
+$result = mysqli_query($conn, $selectSQL);
+
+if (mysqli_num_rows($result) > 0) {
+    echo "<h2> Student Records</h2>";
+    echo "<table border='1' cellpadding='8' cellspacing='0' style='border-collapse: collapse; text-align: center;'>
+            <tr style='background-color: #f2f2f2;'>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Marks</th>
+                <th>Subject</th>
+            </tr>";
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>
+                <td>" . htmlspecialchars($row["id"]) . "</td>
+                <td>" . htmlspecialchars($row["name"]) . "</td>
+                <td>" . htmlspecialchars($row["marks"]) . "</td>
+                <td>" . htmlspecialchars($row["subject"]) . "</td>
+              </tr>";
+    }
+    echo "</table>";
+} else {
+    echo "<p>No student records found.</p>";
+}
+
+
+mysqli_close($conn);
+?>

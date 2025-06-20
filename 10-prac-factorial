@@ -1,0 +1,24 @@
+<?php
+
+// Input number
+
+$num = 5; // You can change this value to test with other numbers
+
+// Variable to store factorial result
+
+$factorial = 1;
+
+// Loop to calculate factorial
+
+for ($x = $num; $x >= 1; $x--) {
+
+$factorial *= $x; // Multiply current value of $factorial by $x
+
+}
+
+// Output the result
+
+echo "The factorial of $num is $factorial";
+
+?>
+

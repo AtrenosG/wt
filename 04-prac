@@ -1,0 +1,15 @@
+<?php
+
+$arr=[
+    array('Roll'=>'1', 'name' => 'Ajay', 'marks' => '760'),
+    array('Roll'=>'2', 'name' => 'Megha', 'marks' => '560'),
+    array('Roll'=>'3', 'name' => 'Payal', 'marks' => '800')
+];
+
+echo "<br>";
+foreach ($arr as $x) {
+    echo $x['Roll'] ."<br>"; 
+    echo $x['name'] ."<br>";
+    echo $x['marks'] ."<br>";
+}
+?>
