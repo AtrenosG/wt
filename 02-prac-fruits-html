@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+</head>
+<body>
+    <h1 align="center">FRUITS</h1>
+    <ol>
+        <li><a href="apple.html">Apple</a></li>
+        <li><a href="mango.html">Mango</a></li>
+        <li><a href="grapes.html">Grapes</a></li>
+        <li><a href="guava.html">guava</a></li>
+        <li><a href="strawberry.html">strawbeery</a></li>
+    </ol>
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="5">
+    <tr>
+    <th>Name</th>
+    <th>color</th>
+    <th>About</th>
+    <th>image</th>
+    </tr>
+    <tr>
+        <td>Apple</td>
+        <td>red</td>
+        <td>apple, (Malus domestica), domesticated tree and fruit of the rose family (Rosaceae), one of the most widely cultivated tree fruits.</td>
+        <td><img src="apple.jpg"></td>
+    </tr>
+    </table>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="5">
+        <tr>
+        <th>Name</th>
+        <th>color</th>
+        <th>About</th>
+        <th>image</th>
+        </tr>
+        <tr>
+            <td>Mango</td>
+            <td>Yellow</td>
+            <td>Mangoes are a tropical fruit that are juicy, sweet, and full of vitamins and minerals. 
+            <td><img src="mango.jpg"></td>
+        </td>
+        </table>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <tr>
+        <th>Name</th>
+        <th>color</th>
+        <th>About</th>
+        <th>image</th>
+        </tr>
+        <tr>
+            <td>grapes</td>
+            <td>green</td>
+            <td>Grapes are a fruit that come in many colors and varieties, and can be eaten fresh or used to make wine, juice, and jelly.
+            <td><img src="grapes.jpg"></td> 
+         </tr>
+        </table>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="5">
+        <tr>
+        <th>Name</th>
+        <th>color</th>
+        <th>About</th>
+        <th>image</th>
+        </tr>
+        <tr>
+            <td>Guava</td>
+            <td>Green</td>
+            <td>Guava (Psidium guajava) is a tropical fruit that's a good source of vitamins, fiber, and antioxidants.</td>
+            <td><img src="guava.jpg"></td>
+        </tr>
+        </table>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="5">
+        <tr>
+        <th>Name</th>
+        <th>color</th>
+        <th>About</th>
+        <th>image</th>
+        </tr>
+        <tr>
+            <td>Strawberry</td>
+            <td>red</td>
+            <td>Strawberries are a red, heart-shaped fruit that are high in vitamin C and other nutrients.</td>
+            <td><img src="strawberry.jpg"></td>
+        </tr>
+        </table>
+</body>
+</html>
+
