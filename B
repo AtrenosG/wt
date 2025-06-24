@@ -1,0 +1,175 @@
+//connect.php
+
+<?php
+$con = new mysqli('localhost', 'root', '', 'crudoperation');
+if (!$con) {
+    die(mysqli_error($con));
+}
+?>
+
+//sql
+
+CREATE TABLE IF NOT EXISTS crud (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100),
+  mobile VARCHAR(15),
+  password VARCHAR(100)
+);
+
+
+//display.php
+<?php include 'connect.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Display Users</title>
+</head>
+<body>
+
+<h2>User List</h2>
+<a href="user.php">Add User</a><br><br>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Sr.No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>Password</th>
+    <th>Actions</th>
+  </tr>
+
+  <?php
+  $sql = "SELECT * FROM crud";
+  $result = mysqli_query($con, $sql);
+  $srno = 1;
+
+  if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>
+        <td>" . $srno++ . "</td>
+        <td>" . $row['name'] . "</td>
+        <td>" . $row['email'] . "</td>
+        <td>" . $row['mobile'] . "</td>
+        <td>" . $row['password'] . "</td>
+        <td>
+          <a href='update.php?updateid=" . $row['id'] . "'>Update</a> |
+          <a href='delete.php?deleteid=" . $row['id'] . "'>Delete</a>
+        </td>
+      </tr>";
+    }
+  }
+  ?>
+</table>
+
+</body>
+</html>
+
+//delete.php
+<?php
+include 'connect.php';
+
+if (isset($_GET['deleteid'])) {
+  $id = $_GET['deleteid'];
+  $sql = "DELETE FROM crud WHERE id = $id";
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    header('location:display.php');
+  } else {
+    die(mysqli_error($con));
+  }
+}
+?>
+
+//user.php
+<?php
+include 'connect.php';
+
+if (isset($_POST['submit'])) {
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $mobile = $_POST['mobile'];
+  $password = $_POST['password'];
+
+  $sql = "INSERT INTO crud (name, email, mobile, password) VALUES ('$name', '$email', '$mobile', '$password')";
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    header('location:display.php');
+  } else {
+    die(mysqli_error($con));
+  }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add User</title>
+</head>
+<body>
+
+<h2>Add User</h2>
+<form method="post">
+  Name: <input type="text" name="name" required><br><br>
+  Email: <input type="email" name="email" required><br><br>
+  Mobile: <input type="text" name="mobile" required><br><br>
+  Password: <input type="password" name="password" required><br><br>
+  <input type="submit" name="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
+//update.php
+
+<?php
+include 'connect.php';
+
+$id = $_GET['updateid'];
+$sql = "SELECT * FROM crud WHERE id = $id";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($result);
+
+$name = $row['name'];
+$email = $row['email'];
+$mobile = $row['mobile'];
+$password = $row['password'];
+
+if (isset($_POST['submit'])) {
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $mobile = $_POST['mobile'];
+  $password = $_POST['password'];
+
+  $sql = "UPDATE crud SET name='$name', email='$email', mobile='$mobile', password='$password' WHERE id=$id";
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    header('location:display.php');
+  } else {
+    die(mysqli_error($con));
+  }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update User</title>
+</head>
+<body>
+
+<h2>Update User</h2>
+<form method="post">
+  Name: <input type="text" name="name" value="<?php echo $name; ?>"><br><br>
+  Email: <input type="email" name="email" value="<?php echo $email; ?>"><br><br>
+  Mobile: <input type="text" name="mobile" value="<?php echo $mobile; ?>"><br><br>
+  Password: <input type="password" name="password" value="<?php echo $password; ?>"><br><br>
+  <input type="submit" name="submit" value="Update">
+</form>
+
+</body>
+</html>
